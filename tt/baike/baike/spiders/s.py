@@ -8,8 +8,8 @@ i = 0
 class BaikeSpider(scrapy.Spider):
     name = 'baike'
 
- #   inp = input("请输入关键字：")
-    inp = '深圳'
+    inp = input("请输入关键字：")
+ #   inp = '深圳'
     start_urls = ['https://baike.baidu.com/item/%s' % inp]
 
     def parse(self, response):
