@@ -11,6 +11,7 @@ class BaikeSpider(scrapy.Spider):
     inp = input("请输入关键字：")
  #   inp = '深圳'
     start_urls = ['https://baike.baidu.com/item/%s' % inp]
+ #   start_urls = ['https://aonephy.top/blog/list.php?id=1']
 
     def parse(self, response):
 
@@ -33,8 +34,9 @@ class BaikeSpider(scrapy.Spider):
         for url in urls:
         #    print(url)
             url = response.urljoin(url)
-            if i>10000:
-                self.crawler.engine.close_spider(self, 'closespider')
+            if i>100:
+            #    self.crawler.engine.close_spider(self, 'closespider')
+                yield scrapy.Request(url, callback=self.parse)
             else:
                 yield scrapy.Request(url, callback=self.parse)
 

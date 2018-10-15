@@ -9,13 +9,18 @@
 #     https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 
+LOG_FILE="log.txt"
 BOT_NAME = 'baike'
 
 SPIDER_MODULES = ['baike.spiders']
 NEWSPIDER_MODULE = 'baike.spiders'
+# 随机agent
 
 
-LOG_FILE="log.txt"
+DOWNLOADER_MIDDLEWARES = {
+    'baike.RandomUserAgentMiddleware.RandomUserAgentMiddleware': 400,
+    'scrapy.contrib.downloadermiddleware.useragent.UserAgentMiddleware': None,
+}
 
 FEED_EXPORT_ENCODING = 'utf-8'
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
@@ -24,7 +29,7 @@ FEED_EXPORT_ENCODING = 'utf-8'
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = False
 
-LOG_LEVEL = 'ERROR'
+LOG_LEVEL = 'CRITICAL'
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
 
@@ -37,7 +42,7 @@ LOG_LEVEL = 'ERROR'
 #CONCURRENT_REQUESTS_PER_IP = 16
 
 # Disable cookies (enabled by default)
-#COOKIES_ENABLED = False
+COOKIES_ENABLED = False
 
 # Disable Telnet Console (enabled by default)
 #TELNETCONSOLE_ENABLED = False

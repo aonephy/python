@@ -14,7 +14,7 @@ class Login3Spider(scrapy.Spider):
 		yield scrapy.FormRequest.from_response(
 			response, # 传入response对象,自动解析
 			# 可以通过xpath来定位form表单,当前页只有一个form表单时,将会自动定位
-			formxpath='//form[@id="loginForm"]',
+			formxpath='//form[@id="login_box"]',
 			formdata={'email': 'anjinfeng123@163.com', 'password': '043252410'},
 			callback=self.parse_login
 		)
